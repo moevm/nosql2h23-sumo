@@ -1,4 +1,4 @@
-import {neo4jDriver} from "~/server/lib/neo4j";
+import {neo4jDriver} from "~/lib";
 
 export default defineEventHandler(async (event) => {
   const session = neo4jDriver.session();
