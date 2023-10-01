@@ -24,7 +24,7 @@ export function backupNodes(): Promise<object[]> {
                 },
                 onError: function (error) {
                     console.log(error);
-                    session.close(); // Ensure the session is closed even in case of error
+                    session.close();
                     reject(error);
                 }
             });
@@ -66,7 +66,7 @@ export function backupRelationships(): Promise<object[]> {
                 },
                 onError: function (error) {
                     console.log(error);
-                    session.close(); // Ensure the session is closed even in case of error
+                    session.close();
                     reject(error);
                 }
             });
