@@ -7,9 +7,10 @@
           <upload-outlined />
           <span>Массовый экспорт</span>
         </a-menu-item>
-        <a-menu-item key="2" @click="upload">
+        <a-menu-item key="2" @click="triggerFileSelect">
           <download-outlined />
           <span>Массовый импорт</span>
+          <input type="file" ref="fileInput" style="display: none" @change="upload" />
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -33,23 +34,59 @@ import axios from "axios";
 const collapsed = ref<boolean>(false);
 const selectedKeys = ref<string[]>(['1']);
 
-const upload = async () => {
-  try {
-    console.log('123');
+const fileInput = ref<HTMLInputElement | null>(null);
+const triggerFileSelect = () => {
+  fileInput.value?.click();
+};
 
-    const response = await axios.post('http://localhost:3000/api/upload-backup');
-    console.log(response.data);
-  } catch (error) {
-    console.error(error);
+const upload = async () => {
+  if (fileInput.value?.files?.length) {
+    const file = fileInput.value.files[0];
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      try {
+        const content = event.target?.result;
+        if (typeof content === 'string') {
+          const data = JSON.parse(content);
+          const response = await axios.post('http://localhost:3000/api/upload-backup', data);
+          notification.open({
+            type: 'success',
+            message: 'Upload Successful',
+            description: 'The Backup file has been uploaded successfully.'
+          });
+        }
+      } catch (error) {
+        notification.open({
+          type: 'error',
+          message: 'Upload Failed',
+          description: 'An error occurred while uploading the file.'
+        });
+      }
+    };
+    reader.readAsText(file);
   }
 };
 
 const download = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/api/download-backup');
-    console.log(response.data);
+    const response = await axios.get('http://localhost:3000/api/download-backup', { responseType: 'blob' });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    const date = new Date();
+    link.setAttribute('download', `backup-${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}.json`);    document.body.appendChild(link);
+    link.click();
+    notification.open({
+      type: 'success',
+      message: 'Download Successful',
+      description: 'The backup has been downloaded successfully.'
+    });
   } catch (error) {
-    console.error(error);
+    notification.open({
+      type: 'error',
+      message: 'Download Failed',
+      description: 'An error occurred while downloading the backup.'
+    });
   }
 };
 </script>
