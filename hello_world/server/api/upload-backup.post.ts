@@ -1,13 +1,11 @@
-import {neo4jDriver} from "~/lib";
+import { restoreDatabase } from "~/lib/neo4j-restore";
 
 export default defineEventHandler(async (event) => {
-    const session = neo4jDriver.session();
     try {
-        await session.run('MATCH (n) RETURN n LIMIT 1');
-        return 'Connection successful'
+        const data = await readBody(event)
+        await restoreDatabase(data);
+        return { message: "Database restored successfully" };
     } catch (error) {
-        throw new Error('Connection to neo4j failed')
-    } finally {
-        await session.close();
+        throw new Error('Restore failed');
     }
 })
