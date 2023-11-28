@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges version="1.16" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edges_file.xsd">
+    <edge id="-E10" from="J6" to="J11" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="-E5" from="J7" to="J6" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="-E6" from="J8" to="J7" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="-E7" from="J6" to="J8" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="-E8" from="J7" to="J9" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="-E9" from="J8" to="J10" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="E10" from="J11" to="J6" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="E5" from="J6" to="J7" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="E6" from="J7" to="J8" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="E7" from="J8" to="J6" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="E8" from="J9" to="J7" priority="-1" numLanes="1" speed="13.89"/>
+    <edge id="E9" from="J10" to="J8" priority="-1" numLanes="1" speed="13.89"/>
+</edges>
