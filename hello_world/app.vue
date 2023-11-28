@@ -1,7 +1,7 @@
 <template>
   <a-layout style="min-height: 100vh">
     <a-layout-sider v-model:collapsed="collapsed" collapsible>
-      <div class="logo" />
+      <div class="logo"></div>
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1" @click="download">
           <upload-outlined />
@@ -15,8 +15,10 @@
       </a-menu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0" />
+      <a-layout-header style="background: #fff; padding: 0">
+      </a-layout-header>
       <a-layout-content style="margin: 0 16px">
+
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
           Content
         </div>
@@ -27,6 +29,111 @@
     </a-layout>
   </a-layout>
 </template>
+<script lang="ts">
+import axios from 'axios';
+import {UploadProps} from "ant-design-vue";
+const fileList = ref<UploadProps['fileList']>([]);
+export default {
+  data() {
+    return {
+      experiments: [],
+      pagination: {
+        current: 1,
+        pageSize: 5,
+        total: 0,
+      },
+      columns: [
+        {
+          title: 'Id',
+          dataIndex: 'id',
+        },
+        {
+          title: 'Название эксперимента',
+          dataIndex: 'experimentName',
+        },
+
+        {
+          title: 'Дата создания',
+          dataIndex: 'date',
+        },
+      ],
+      modalVisible: false,
+      experimentNameTextFieldValue: '',
+      nodesTextFieldValue: '',
+      edgesTextFieldValue: '',
+
+    };
+  },
+  methods: {
+    handleTableChange(pagination) {
+      this.pagination = pagination;
+      this.fetchExperiments();
+    },
+    fetchExperiments() {
+      const url = 'http://localhost:3000/api/experiments';
+      const params = {
+        page: this.pagination.current,
+        size: this.pagination.pageSize,
+      };
+      console.log(JSON.stringify(this.pagination))
+
+      axios.get(url, { params })
+          .then(response => {
+            this.experiments = response.data.experiments;
+            this.pagination.total = response.data.totalExperiments;
+          })
+          .catch(error => {
+            console.error('Error fetching experiments:', error);
+          });
+    },
+    triggerFileSelect() {
+      this.$refs.fileInput.click();
+    },
+    handleFileUpload(e) {
+      const file = e.target.files[0];
+      // Implement your file upload logic here
+    },
+    openModal(){
+      console.log('modal opened')
+      this.modalVisible = true
+    },
+    async submitForm() {
+      if (!this.experimentNameTextFieldValue || !this.nodesTextFieldValue || !this.edgesTextFieldValue){
+        return
+      }
+      console.log("submit", this.experimentNameTextFieldValue, this.nodesTextFieldValue, this.edgesTextFieldValue)
+      try {
+          const data = {
+            nodes: btoa(this.nodesTextFieldValue),
+            edges: btoa(this.edgesTextFieldValue),
+            experimentName: this.experimentNameTextFieldValue
+          }
+          const response = await axios.post('http://localhost:3000/api/import-experiment', data);
+          notification.open({
+            type: 'success',
+            message: 'Успех',
+            description: ''
+          });
+      } catch (error) {
+        notification.open({
+          type: 'error',
+          message: 'Ошибка',
+          description: ''
+        });
+      }
+      this.fetchExperiments()
+      this.modalVisible = false
+    },
+    customRequest() {
+      // Handle custom request logic here
+    },
+  },
+  mounted() {
+    console.log("mounted")
+    this.fetchExperiments();
+  },
+};
+</script>
 <script lang="ts" setup>
 
 import { ref } from 'vue';
@@ -51,15 +158,15 @@ const upload = async () => {
           const response = await axios.post('http://localhost:3000/api/upload-backup', data);
           notification.open({
             type: 'success',
-            message: 'Upload Successful',
-            description: 'The Backup file has been uploaded successfully.'
+            message: 'Успех',
+            description: ''
           });
         }
       } catch (error) {
         notification.open({
           type: 'error',
-          message: 'Upload Failed',
-          description: 'An error occurred while uploading the file.'
+          message: 'Ошибка',
+          description: ''
         });
       }
     };
@@ -78,14 +185,14 @@ const download = async () => {
     link.click();
     notification.open({
       type: 'success',
-      message: 'Download Successful',
-      description: 'The backup has been downloaded successfully.'
+      message: 'Успех',
+      description: ''
     });
   } catch (error) {
     notification.open({
       type: 'error',
-      message: 'Download Failed',
-      description: 'An error occurred while downloading the backup.'
+      message: 'Ошибка',
+      description: ''
     });
   }
 };
