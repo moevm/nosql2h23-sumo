@@ -84,3 +84,33 @@ async function parseXMLAndCreateEdges(xml: string, experimentName: string, date:
     }
 }
 
+export async function retrieveExperiments(page: number, pageSize: number) {
+    const session = driver.session();
+
+    try {
+        const result = await session.run(
+            'MATCH (n:Node) RETURN DISTINCT n.experimentName AS experimentName, n.date AS date, n.experimentId as id SKIP TOINTEGER($skip) LIMIT TOINTEGER($limit)',
+            { skip: (page - 1) * pageSize, limit: pageSize }
+        );
+
+        const experiments = result.records.map(record => {
+            return {
+                experimentName: record.get('experimentName'),
+                id: record.get('id'),
+                date: record.get('date')
+            };
+        });
+
+        const totalCount = await session.run(
+            'MATCH (n:Node) RETURN COUNT(DISTINCT n.experimentId) AS totalCount'
+        );
+        const totalExperiments = totalCount.records[0].get('totalCount').low;
+
+        return { experiments, totalExperiments };
+    } catch (error) {
+        console.error('Error retrieving experiments from Neo4j:', error);
+        return { experiments: [], totalExperiments: 0 };
+    } finally {
+        await session.close();
+    }
+}
