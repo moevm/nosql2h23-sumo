@@ -20,13 +20,33 @@
       <a-layout-content style="margin: 0 16px">
 
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-          Content
+          <a-button type="primary" @click="openModal" :style="{float: 'right', marginBottom: '12px'}">Импорт эксперимента</a-button>
+
+          <a-table
+              :columns="columns"
+              :data-source="experiments"
+              :pagination="pagination"
+              @change="handleTableChange"
+          ></a-table>
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
         sumo nosql ©2023
       </a-layout-footer>
     </a-layout>
+    <a-modal v-model:open="modalVisible" title="Импорт эксперимента" @ok="submitForm">
+      <a-form @submit="submitForm">
+        <a-form-item label="Название эксперимента" required>
+          <a-input v-model="experimentNameTextFieldValue" v-model:value="experimentNameTextFieldValue"/>
+        </a-form-item>
+          <a-form-item label="Вершины" required>
+            <a-input v-model="nodesTextFieldValue" v-model:value="nodesTextFieldValue"/>
+          </a-form-item>
+          <a-form-item label="Ребра" required>
+            <a-input v-model="edgesTextFieldValue"  v-model:value="edgesTextFieldValue"/>
+          </a-form-item>
+      </a-form>
+    </a-modal>
   </a-layout>
 </template>
 <script lang="ts">
