@@ -70,7 +70,7 @@ async function parseXMLAndCreateEdges(xml: string, experimentName: string, date:
                     id: $edgeId,
                     priority: $priority,
                     numLanes: $numLanes,
-                    speed: $speed,
+                    speed: $speed
                 }]->(toNode)
                 RETURN e
             `, { from, to, edgeId, priority, numLanes, speed });
