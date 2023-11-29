@@ -84,14 +84,28 @@ async function parseXMLAndCreateEdges(xml: string, experimentName: string, date:
     }
 }
 
-export async function retrieveExperiments(page: number, pageSize: number) {
+export async function retrieveExperiments(page: number, pageSize: number, experimentName?: string) {
     const session = driver.session();
 
     try {
-        const result = await session.run(
-            'MATCH (n:Node) RETURN DISTINCT n.experimentName AS experimentName, n.date AS date, n.experimentId as id SKIP TOINTEGER($skip) LIMIT TOINTEGER($limit)',
-            { skip: (page - 1) * pageSize, limit: pageSize }
-        );
+        let query = 'MATCH (n:Node)';
+        let countQuery = 'MATCH (n:Node)';
+        const params: { [key: string]: any } = {};
+
+        if (experimentName) {
+            query += ' WHERE n.experimentName CONTAINS $experimentName';
+            countQuery += ' WHERE n.experimentName CONTAINS $experimentName';
+            params.experimentName = experimentName;
+        }
+
+        query += ' RETURN DISTINCT n.experimentName AS experimentName, n.date AS date, n.experimentId as id SKIP TOINTEGER($skip) LIMIT TOINTEGER($limit)';
+        countQuery += ' RETURN COUNT(DISTINCT n.experimentId) AS totalCount';
+
+        const result = await session.run(query, {
+            experimentName,
+            skip: (page - 1) * pageSize,
+            limit: pageSize
+        });
 
         const experiments = result.records.map(record => {
             return {
@@ -101,10 +115,8 @@ export async function retrieveExperiments(page: number, pageSize: number) {
             };
         });
 
-        const totalCount = await session.run(
-            'MATCH (n:Node) RETURN COUNT(DISTINCT n.experimentId) AS totalCount'
-        );
-        const totalExperiments = totalCount.records[0].get('totalCount').low;
+        const totalCountResult = await session.run(countQuery, params);
+        const totalExperiments = totalCountResult.records[0].get('totalCount').low;
 
         return { experiments, totalExperiments };
     } catch (error) {
