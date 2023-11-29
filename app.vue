@@ -18,6 +18,7 @@
       <a-layout-header style="background: #fff; padding: 0">
       </a-layout-header>
       <a-layout-content style="margin: 0 16px">
+        <a-input :placeholder="'Поиск по названию эксперимента'" v-model:value="filterText" @change="handleFilter" style="margin-bottom: 12px;margin-top: 12px"></a-input>
 
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
           <a-button type="primary" @click="openModal" :style="{float: 'right', marginBottom: '12px'}">Импорт эксперимента</a-button>
@@ -56,6 +57,7 @@ const fileList = ref<UploadProps['fileList']>([]);
 export default {
   data() {
     return {
+      filterText: '',
       experiments: [],
       pagination: {
         current: 1,
@@ -94,7 +96,9 @@ export default {
       const params = {
         page: this.pagination.current,
         size: this.pagination.pageSize,
+        experimentName: this.filterText
       };
+      console.log(this.filterText)
       console.log(JSON.stringify(this.pagination))
 
       axios.get(url, { params })
@@ -147,6 +151,12 @@ export default {
     customRequest() {
       // Handle custom request logic here
     },
+    handleFilter() {
+      console.log("filter")
+
+      this.fetchExperiments()
+
+    }
   },
   mounted() {
     console.log("mounted")
