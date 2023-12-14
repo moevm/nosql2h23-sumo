@@ -12,6 +12,10 @@
           <span>Массовый импорт</span>
           <input type="file" ref="fileInput" style="display: none" @change="upload" />
         </a-menu-item>
+        <a-menu-item key="3" @click="navigateToStats">
+          <bar-chart-outlined />
+          <span>Статистика экспериментов</span>
+        </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout>
@@ -28,7 +32,9 @@
               :data-source="experiments"
               :pagination="pagination"
               @change="handleTableChange"
-          ></a-table>
+              v-bind="{customRow: onRow}"
+          >
+          </a-table>
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
@@ -87,6 +93,19 @@ export default {
     };
   },
   methods: {
+    navigateToStats() {
+      this.$router.push('/statistics');
+    },
+    navigateToExperiment(record) {
+      this.$router.push(`/experiments/${record.id}`);
+    },
+    onRow(record) {
+      return {
+        onClick: event => {
+          this.navigateToExperiment(record)
+        },
+      };
+    },
     handleTableChange(pagination) {
       this.pagination = pagination;
       this.fetchExperiments();

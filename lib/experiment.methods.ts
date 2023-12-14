@@ -126,3 +126,76 @@ export async function retrieveExperiments(page: number, pageSize: number, experi
         await session.close();
     }
 }
+
+export async function retrieveExperimentStats(experimentId: string) {
+    const session = driver.session();
+
+    try {
+        const nodesQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN COUNT(n) as nodeCount';
+        const edgesQuery = 'MATCH (:Node {experimentId: $experimentId})-[r]->(:Node {experimentId: $experimentId}) RETURN COUNT(r) as edgeCount';
+        const degreeDistQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN COUNT{(n)--()} as degree ORDER BY degree';
+
+        const nodesResult = await session.run(nodesQuery, { experimentId: experimentId });
+        const edgesResult = await session.run(edgesQuery, { experimentId: experimentId });
+        const degreeDistResult = await session.run(degreeDistQuery, { experimentId: experimentId });
+
+        const nodeCount = nodesResult.records[0].get('nodeCount').low;
+        const edgeCount = edgesResult.records[0].get('edgeCount').low;
+
+        const degreeDist = degreeDistResult.records.map(record => record.get('degree').low);
+        const minNodeDegree = degreeDist.length > 0? Math.min(...degreeDist): 0 ;
+        const maxNodeDegree = degreeDist.length > 0? Math.max(...degreeDist): 0 ;
+        const medianNodeDegree = degreeDist.length > 0? degreeDist[Math.floor(degreeDist.length / 2)]: 0 ;
+
+        const degreeSum = degreeDist.reduce((a, b) => a + b, 0);
+        const avgNodeDegree = degreeSum / nodeCount;
+
+        return {
+            numberOfNodes: nodeCount,
+            numberOfEdges: edgeCount,
+            averageNodeDegree: avgNodeDegree,
+            minNodeDegree: minNodeDegree,
+            maxNodeDegree: maxNodeDegree,
+            medianNodeDegree: medianNodeDegree,
+        };
+    } catch (error) {
+        console.error('Error retrieving experiment stats from Neo4j:', error);
+        return {};
+    } finally {
+        await session.close();
+    }
+}
+
+export async function retrieveAllExperimentStats() {
+    const session = driver.session();
+
+    try {
+        const statsQuery =
+            'MATCH (n:Node) ' +
+            'OPTIONAL MATCH (n)-[r]->(:Node) ' +
+            'WITH COUNT(DISTINCT n.experimentId) as totalExperiments, COUNT(n) as totalNodes, COUNT(r) as totalEdges ' +
+            'RETURN totalExperiments, totalNodes, totalEdges';
+
+        const statsResult = await session.run(statsQuery);
+
+        const record = statsResult.records[0];
+        const totalExperiments = record.get('totalExperiments').low;
+        const totalNodes = record.get('totalNodes').low;
+        const totalEdges = record.get('totalEdges').low;
+
+        return {
+            totalExperiments,
+            totalNodes,
+            totalEdges
+        };
+
+    } catch (error) {
+        console.error('Error retrieving all experiment stats from Neo4j:', error);
+        return {};
+    } finally {
+        await session.close();
+    }
+}
+
+
+
