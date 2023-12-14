@@ -14,8 +14,8 @@ function generateRandomId() {
 
 let driver = neo4jDriver;
 export async function importExperiment(data: { nodes: string; edges: string, experimentName: string}){
-    await parseXMLAndCreateNodes(atob(data.nodes), data.experimentName, (new Date()).toLocaleDateString(), generateRandomId());
-    await parseXMLAndCreateEdges(atob(data.edges), data.experimentName, (new Date()).toLocaleDateString());
+    await parseXMLAndCreateNodes(atob(data.nodes), data.experimentName, (new Date()).toISOString().slice(0,10), generateRandomId());
+    await parseXMLAndCreateEdges(atob(data.edges), data.experimentName, (new Date()).toISOString().slice(0,10));
 }
 async function parseXMLAndCreateNodes(xml: string, experimentName: string, date: string, experimentId: string) {
     const parser = new xml2js.Parser();
@@ -83,8 +83,10 @@ async function parseXMLAndCreateEdges(xml: string, experimentName: string, date:
         await session.close();
     }
 }
-
-export async function retrieveExperiments(page: number, pageSize: number, experimentName?: string) {
+export async function retrieveExperiments(page: number, pageSize: number,
+                                          experimentName?: string,
+                                          startDate?: string, endDate?: string,
+                                          experimentId?: string) {
     const session = driver.session();
 
     try {
@@ -94,15 +96,38 @@ export async function retrieveExperiments(page: number, pageSize: number, experi
 
         if (experimentName) {
             query += ' WHERE n.experimentName CONTAINS $experimentName';
-            countQuery += ' WHERE n.experimentName CONTAINS $experimentName';
+            countQuery += ' WHERE n.experimentName '
             params.experimentName = experimentName;
+        }
+
+        if (startDate && endDate) {
+            const startDateObj = new Date(startDate);
+            const endDateObj = new Date(endDate);
+
+            params.startDate = startDateObj.toISOString().slice(0,10);
+            params.endDate = endDateObj.toISOString().slice(0,10);
+            console.log(params.startDate, params.endDate)
+            query += (experimentName ? ' AND' : ' WHERE') +
+                ` date(n.date) >= date("${params.startDate}") AND date(n.date) <= date("${params.endDate}")`;
+            countQuery += (experimentName ? ' AND' : ' WHERE') +
+                ` date(n.date) >= date("${params.startDate}") AND date(n.date) <= date("${params.endDate}")`;
+        }
+
+
+
+        if (experimentId) {
+            query += (experimentName || (startDate && endDate) ? ' AND' : ' WHERE') +
+                ` n.experimentId CONTAINS "${experimentId}"`;
+            countQuery += (experimentName || (startDate && endDate) ? ' AND' : ' WHERE') +
+                ` n.experimentId CONTAINS "${experimentId}"`;
+            params.experimentId = experimentId;
         }
 
         query += ' RETURN DISTINCT n.experimentName AS experimentName, n.date AS date, n.experimentId as id SKIP TOINTEGER($skip) LIMIT TOINTEGER($limit)';
         countQuery += ' RETURN COUNT(DISTINCT n.experimentId) AS totalCount';
 
         const result = await session.run(query, {
-            experimentName,
+            ...params,
             skip: (page - 1) * pageSize,
             limit: pageSize
         });
@@ -119,6 +144,7 @@ export async function retrieveExperiments(page: number, pageSize: number, experi
         const totalExperiments = totalCountResult.records[0].get('totalCount').low;
 
         return { experiments, totalExperiments };
+
     } catch (error) {
         console.error('Error retrieving experiments from Neo4j:', error);
         return { experiments: [], totalExperiments: 0 };
@@ -126,6 +152,7 @@ export async function retrieveExperiments(page: number, pageSize: number, experi
         await session.close();
     }
 }
+
 
 export async function retrieveExperimentStats(experimentId: string) {
     const session = driver.session();

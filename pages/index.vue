@@ -20,11 +20,18 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
+
+
       </a-layout-header>
+
       <a-layout-content style="margin: 0 16px">
+
         <a-input :placeholder="'Поиск по названию эксперимента'" v-model:value="filterText" @change="handleFilter" style="margin-bottom: 12px;margin-top: 12px"></a-input>
 
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
+          <a-button @click="openFilterModal" type="primary" style="margin-bottom: 12px">
+            Применить фильтры
+          </a-button>
           <a-button type="primary" @click="openModal" :style="{float: 'right', marginBottom: '12px'}">Импорт эксперимента</a-button>
 
           <a-table
@@ -41,6 +48,16 @@
         sumo nosql ©2023
       </a-layout-footer>
     </a-layout>
+    <a-modal v-model:visible="filterModalVisible" title="Фильтр экспериментов" @ok="applyFilters">
+      <a-form @submit="submitForm">
+        <a-form-item label="ID эксперимента">
+          <a-input v-model:value="filterExperimentId"/>
+        </a-form-item>
+        <a-form-item label="Диапазон дат">
+          <a-range-picker v-model:value="filterDateRange" />
+        </a-form-item>
+      </a-form>
+    </a-modal>
     <a-modal v-model:open="modalVisible" title="Импорт эксперимента" @ok="submitForm">
       <a-form @submit="submitForm">
         <a-form-item label="Название эксперимента" required>
@@ -63,6 +80,9 @@ const fileList = ref<UploadProps['fileList']>([]);
 export default {
   data() {
     return {
+      filterModalVisible: false,
+      filterExperimentId: '',
+      filterDateRange: ['', ''],
       filterText: '',
       experiments: [],
       pagination: {
@@ -93,6 +113,13 @@ export default {
     };
   },
   methods: {
+    openFilterModal() {
+      this.filterModalVisible = true;
+    },
+    applyFilters() {
+      this.filterModalVisible = false;
+      this.fetchExperiments();
+    },
     navigateToStats() {
       this.$router.push('/statistics');
     },
@@ -115,7 +142,10 @@ export default {
       const params = {
         page: this.pagination.current,
         size: this.pagination.pageSize,
-        experimentName: this.filterText
+        experimentName: this.filterText,
+        experimentId: this.filterExperimentId,
+        startDate: this.filterDateRange[0],
+        endDate: this.filterDateRange[1],
       };
       console.log(this.filterText)
       console.log(JSON.stringify(this.pagination))
