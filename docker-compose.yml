@@ -3,8 +3,8 @@ services:
   neo4j:
     image: neo4j:5.14.0-community
     expose:
-      - "7474:7474"
-      - "7687:7687"
+      - "7474"
+      - "7687"
     environment:
       - NEO4J_AUTH=neo4j/testtesttest
       - NEO4J_dbms_connector_bolt_advertised__address=localhost:7687
