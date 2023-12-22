@@ -96,8 +96,8 @@ export async function retrieveExperiments(page: number, pageSize: number,
         const params: { [key: string]: any } = {};
 
         if (experimentName) {
-            query += ' WHERE n.experimentName CONTAINS $experimentName';
-            countQuery += ' WHERE n.experimentName '
+            query += ' WHERE toLower(n.experimentName) CONTAINS toLower($experimentName)';
+            countQuery += ' WHERE toLower(n.experimentName) CONTAINS toLower($experimentName)';
             params.experimentName = experimentName;
         }
 
@@ -118,9 +118,9 @@ export async function retrieveExperiments(page: number, pageSize: number,
 
         if (experimentId) {
             query += (experimentName || (startDate && endDate) ? ' AND' : ' WHERE') +
-                ` n.experimentId CONTAINS "${experimentId}"`;
+                ` toLower(n.experimentId) CONTAINS toLower("${experimentId}")`;
             countQuery += (experimentName || (startDate && endDate) ? ' AND' : ' WHERE') +
-                ` n.experimentId CONTAINS "${experimentId}"`;
+                ` toLower(n.experimentId) CONTAINS toLower("${experimentId}")`;
             params.experimentId = experimentId;
         }
 
