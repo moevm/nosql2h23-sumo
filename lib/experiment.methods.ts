@@ -14,8 +14,9 @@ function generateRandomId() {
 
 let driver = neo4jDriver;
 export async function importExperiment(data: { nodes: string; edges: string, experimentName: string}){
-    await parseXMLAndCreateNodes(atob(data.nodes), data.experimentName, (new Date()).toISOString().slice(0,10), generateRandomId());
-    await parseXMLAndCreateEdges(atob(data.edges), data.experimentName, (new Date()).toISOString().slice(0,10));
+    const id = generateRandomId();
+    await parseXMLAndCreateNodes(atob(data.nodes), data.experimentName, (new Date()).toISOString().slice(0,10), id);
+    await parseXMLAndCreateEdges(atob(data.edges), data.experimentName, id);
 }
 async function parseXMLAndCreateNodes(xml: string, experimentName: string, date: string, experimentId: string) {
     const parser = new xml2js.Parser();
@@ -46,7 +47,7 @@ async function parseXMLAndCreateNodes(xml: string, experimentName: string, date:
     }
 }
 
-async function parseXMLAndCreateEdges(xml: string, experimentName: string, date: string) {
+async function parseXMLAndCreateEdges(xml: string, experimentName: string, experimentId: string) {
     const parser = new xml2js.Parser();
     const jsonData = await parser.parseStringPromise(xml);
 
@@ -64,8 +65,8 @@ async function parseXMLAndCreateEdges(xml: string, experimentName: string, date:
             const speed = parseFloat(edge.$.speed);
 
             const result = await session.run(`
-                MATCH (fromNode:Node {id: $from})
-                MATCH (toNode:Node {id: $to})
+                MATCH (fromNode:Node {id: $from, experimentId: $experimentId})
+                MATCH (toNode:Node {id: $to, experimentId: $experimentId})
                 CREATE (fromNode)-[e:EDGE {
                     id: $edgeId,
                     priority: $priority,
@@ -73,7 +74,7 @@ async function parseXMLAndCreateEdges(xml: string, experimentName: string, date:
                     speed: $speed
                 }]->(toNode)
                 RETURN e
-            `, { from, to, edgeId, priority, numLanes, speed });
+            `, { from, to, edgeId, priority, numLanes, speed, experimentId });
 
             // console.log(`Created edge: ${result.records[0].get('e').properties.id}`);
         }
