@@ -1,0 +1,1788 @@
+{
+  "nodes": [
+    {
+      "identity": 0,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": -46.35,
+        "y": 46.08,
+        "experimentId": "q0MhV",
+        "id": "J6",
+        "type": "priority",
+        "experimentName": "avc"
+      }
+    },
+    {
+      "identity": 1,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 36.58,
+        "y": 86.87,
+        "experimentId": "q0MhV",
+        "id": "J7",
+        "type": "priority",
+        "experimentName": "avc"
+      }
+    },
+    {
+      "identity": 2,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 64.04,
+        "y": 27.28,
+        "experimentId": "q0MhV",
+        "id": "J8",
+        "type": "priority",
+        "experimentName": "avc"
+      }
+    },
+    {
+      "identity": 3,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 49.24,
+        "y": 118.2,
+        "experimentId": "q0MhV",
+        "id": "J9",
+        "type": "dead_end",
+        "experimentName": "avc"
+      }
+    },
+    {
+      "identity": 52,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 113.75,
+        "y": 9.8,
+        "experimentId": "fwAjj",
+        "id": "J10",
+        "type": "dead_end",
+        "experimentName": "123"
+      }
+    },
+    {
+      "identity": 53,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": -84.43,
+        "y": 45.66,
+        "experimentId": "fwAjj",
+        "id": "J11",
+        "type": "dead_end",
+        "experimentName": "123"
+      }
+    },
+    {
+      "identity": 54,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": -46.35,
+        "y": 46.08,
+        "experimentId": "fwAjj",
+        "id": "J6",
+        "type": "priority",
+        "experimentName": "123"
+      }
+    },
+    {
+      "identity": 55,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 36.58,
+        "y": 86.87,
+        "experimentId": "fwAjj",
+        "id": "J7",
+        "type": "priority",
+        "experimentName": "123"
+      }
+    },
+    {
+      "identity": 56,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 64.04,
+        "y": 27.28,
+        "experimentId": "fwAjj",
+        "id": "J8",
+        "type": "priority",
+        "experimentName": "123"
+      }
+    },
+    {
+      "identity": 57,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 49.24,
+        "y": 118.2,
+        "experimentId": "fwAjj",
+        "id": "J9",
+        "type": "dead_end",
+        "experimentName": "123"
+      }
+    },
+    {
+      "identity": 58,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 113.75,
+        "y": 9.8,
+        "experimentId": "1pXqi",
+        "id": "J10",
+        "type": "dead_end",
+        "experimentName": "423"
+      }
+    },
+    {
+      "identity": 59,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": -84.43,
+        "y": 45.66,
+        "experimentId": "1pXqi",
+        "id": "J11",
+        "type": "dead_end",
+        "experimentName": "423"
+      }
+    },
+    {
+      "identity": 60,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": -46.35,
+        "y": 46.08,
+        "experimentId": "1pXqi",
+        "id": "J6",
+        "type": "priority",
+        "experimentName": "423"
+      }
+    },
+    {
+      "identity": 61,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 36.58,
+        "y": 86.87,
+        "experimentId": "1pXqi",
+        "id": "J7",
+        "type": "priority",
+        "experimentName": "423"
+      }
+    },
+    {
+      "identity": 62,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 64.04,
+        "y": 27.28,
+        "experimentId": "1pXqi",
+        "id": "J8",
+        "type": "priority",
+        "experimentName": "423"
+      }
+    },
+    {
+      "identity": 63,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 49.24,
+        "y": 118.2,
+        "experimentId": "1pXqi",
+        "id": "J9",
+        "type": "dead_end",
+        "experimentName": "423"
+      }
+    },
+    {
+      "identity": 64,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": 113.75,
+        "y": 9.8,
+        "experimentId": "q0MhV",
+        "id": "J10",
+        "type": "dead_end",
+        "experimentName": "avc"
+      }
+    },
+    {
+      "identity": 66,
+      "labels": [
+        "Node"
+      ],
+      "properties": {
+        "date": "2023-12-23",
+        "x": -84.43,
+        "y": 45.66,
+        "experimentId": "q0MhV",
+        "id": "J11",
+        "type": "dead_end",
+        "experimentName": "avc"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "relationship": {
+        "identity": 0,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E10",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 60,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "1pXqi",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 59,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -84.43,
+          "y": 45.66,
+          "experimentId": "1pXqi",
+          "id": "J11",
+          "type": "dead_end",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 1,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E5",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 61,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "1pXqi",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 60,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "1pXqi",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 2,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E6",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 62,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "1pXqi",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 61,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "1pXqi",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 3,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E7",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 60,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "1pXqi",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 62,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "1pXqi",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 4,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E8",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 61,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "1pXqi",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 63,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 49.24,
+          "y": 118.2,
+          "experimentId": "1pXqi",
+          "id": "J9",
+          "type": "dead_end",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 5,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E9",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 62,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "1pXqi",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 58,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 113.75,
+          "y": 9.8,
+          "experimentId": "1pXqi",
+          "id": "J10",
+          "type": "dead_end",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 6,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E10",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 59,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -84.43,
+          "y": 45.66,
+          "experimentId": "1pXqi",
+          "id": "J11",
+          "type": "dead_end",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 60,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "1pXqi",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 7,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E5",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 60,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "1pXqi",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 61,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "1pXqi",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 8,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E6",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 61,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "1pXqi",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 62,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "1pXqi",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 9,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E7",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 62,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "1pXqi",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 60,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "1pXqi",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 10,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E8",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 63,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 49.24,
+          "y": 118.2,
+          "experimentId": "1pXqi",
+          "id": "J9",
+          "type": "dead_end",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 61,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "1pXqi",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 11,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E9",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 58,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 113.75,
+          "y": 9.8,
+          "experimentId": "1pXqi",
+          "id": "J10",
+          "type": "dead_end",
+          "experimentName": "423"
+        }
+      },
+      "endNode": {
+        "identity": 62,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "1pXqi",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "423"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 12,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E10",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 0,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "q0MhV",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 66,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -84.43,
+          "y": 45.66,
+          "experimentId": "q0MhV",
+          "id": "J11",
+          "type": "dead_end",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 13,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E5",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 1,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "q0MhV",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 0,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "q0MhV",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 14,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E6",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 2,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "q0MhV",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 1,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "q0MhV",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 15,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E7",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 0,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "q0MhV",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 2,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "q0MhV",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 16,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E8",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 1,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "q0MhV",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 3,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 49.24,
+          "y": 118.2,
+          "experimentId": "q0MhV",
+          "id": "J9",
+          "type": "dead_end",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 17,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E9",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 2,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "q0MhV",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 64,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 113.75,
+          "y": 9.8,
+          "experimentId": "q0MhV",
+          "id": "J10",
+          "type": "dead_end",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 18,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E10",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 66,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -84.43,
+          "y": 45.66,
+          "experimentId": "q0MhV",
+          "id": "J11",
+          "type": "dead_end",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 0,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "q0MhV",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 19,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E5",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 0,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "q0MhV",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 1,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "q0MhV",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 20,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E6",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 1,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "q0MhV",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 2,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "q0MhV",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 21,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E7",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 2,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "q0MhV",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 0,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "q0MhV",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 22,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E8",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 3,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 49.24,
+          "y": 118.2,
+          "experimentId": "q0MhV",
+          "id": "J9",
+          "type": "dead_end",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 1,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "q0MhV",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 23,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E9",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 64,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 113.75,
+          "y": 9.8,
+          "experimentId": "q0MhV",
+          "id": "J10",
+          "type": "dead_end",
+          "experimentName": "avc"
+        }
+      },
+      "endNode": {
+        "identity": 2,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "q0MhV",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "avc"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 36,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E10",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 54,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "fwAjj",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 53,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -84.43,
+          "y": 45.66,
+          "experimentId": "fwAjj",
+          "id": "J11",
+          "type": "dead_end",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 37,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E5",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 55,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "fwAjj",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 54,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "fwAjj",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 38,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E6",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 56,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "fwAjj",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 55,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "fwAjj",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 39,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E7",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 54,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "fwAjj",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 56,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "fwAjj",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 40,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E8",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 55,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "fwAjj",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 57,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 49.24,
+          "y": 118.2,
+          "experimentId": "fwAjj",
+          "id": "J9",
+          "type": "dead_end",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 41,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "-E9",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 56,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "fwAjj",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 52,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 113.75,
+          "y": 9.8,
+          "experimentId": "fwAjj",
+          "id": "J10",
+          "type": "dead_end",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 42,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E10",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 53,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -84.43,
+          "y": 45.66,
+          "experimentId": "fwAjj",
+          "id": "J11",
+          "type": "dead_end",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 54,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "fwAjj",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 43,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E5",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 54,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "fwAjj",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 55,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "fwAjj",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 44,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E6",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 55,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "fwAjj",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 56,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "fwAjj",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 45,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E7",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 56,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "fwAjj",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 54,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": -46.35,
+          "y": 46.08,
+          "experimentId": "fwAjj",
+          "id": "J6",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 46,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E8",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 57,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 49.24,
+          "y": 118.2,
+          "experimentId": "fwAjj",
+          "id": "J9",
+          "type": "dead_end",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 55,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 36.58,
+          "y": 86.87,
+          "experimentId": "fwAjj",
+          "id": "J7",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    },
+    {
+      "relationship": {
+        "identity": 47,
+        "type": "EDGE",
+        "properties": {
+          "numLanes": 1,
+          "id": "E9",
+          "priority": -1,
+          "speed": 13.89
+        }
+      },
+      "startNode": {
+        "identity": 52,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 113.75,
+          "y": 9.8,
+          "experimentId": "fwAjj",
+          "id": "J10",
+          "type": "dead_end",
+          "experimentName": "123"
+        }
+      },
+      "endNode": {
+        "identity": 56,
+        "labels": [
+          "Node"
+        ],
+        "properties": {
+          "date": "2023-12-23",
+          "x": 64.04,
+          "y": 27.28,
+          "experimentId": "fwAjj",
+          "id": "J8",
+          "type": "priority",
+          "experimentName": "123"
+        }
+      }
+    }
+  ]
+}
