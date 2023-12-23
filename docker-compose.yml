@@ -10,6 +10,7 @@ services:
     volumes:
       - data-volume:/data
       - logs-volume:/logs
+
   nuxt-app:
     build:
       context: .
@@ -17,7 +18,8 @@ services:
       - "127.0.0.1:3000:3000"
     depends_on:
       - neo4j
-
+    command: >
+      bash -c "npm run start & ./wait-for-it.sh neo4j:7687 --timeout=30 -- npm run seed && while :; do sleep 1; done"
 volumes:
   data-volume:
   logs-volume:
