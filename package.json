@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "seed": "node seed.js",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "start": "nuxt start",
