@@ -8,8 +8,8 @@ services:
     environment:
       - NEO4J_AUTH=none
     volumes:
-      - ./neo4j/data:/data
-      - ./neo4j/logs:/logs
+      - data-volume:/data
+      - logs-volume:/logs
   nuxt-app:
     build:
       context: .
@@ -18,3 +18,6 @@ services:
     depends_on:
       - neo4j
 
+volumes:
+  data-volume:
+  logs-volume:
