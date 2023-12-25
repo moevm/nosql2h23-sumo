@@ -87,14 +87,16 @@ async function parseXMLAndCreateEdges(xml: string, experimentName: string, exper
 }
 export async function retrieveExperiments(page: number, pageSize: number,
                                           experimentName?: string,
-                                          startDate?: string, endDate?: string,
-                                          experimentId?: string) {
+                                          experimentId?: string,
+                                          startDate?: string, endDate?: string, 
+                                          minNodes?: string, maxNodes?: string) {
     const session = driver.session();
-
+    
     try {
         let query = 'MATCH (n:Node)';
         let countQuery = 'MATCH (n:Node)';
         const params: { [key: string]: any } = {};
+        
 
         if (experimentName) {
             query += ' WHERE toLower(n.experimentName) CONTAINS toLower($experimentName)';
@@ -114,13 +116,29 @@ export async function retrieveExperiments(page: number, pageSize: number,
             countQuery += (experimentName ? ' AND' : ' WHERE') +
                 ` date(n.date) >= date("${params.startDate}") AND date(n.date) <= date("${params.endDate}")`;
         }
-
-
+        
+        if (minNodes) {
+            params.minNodes = minNodes;
+            query += (experimentName || (startDate && endDate) ? ' AND' : ' WHERE') +
+            ` COUNT {MATCH (m1:Node) WHERE toLower(n.experimentId) CONTAINS toLower(m1.experimentId)} >= ${params.minNodes}`;
+            countQuery += (experimentName || (startDate && endDate) ? ' AND' : ' WHERE') +
+            ` COUNT {MATCH (m1:Node) WHERE toLower(n.experimentId) CONTAINS toLower(m1.experimentId)} >= ${params.minNodes}`;
+        }
+        
+        
+        if (maxNodes) {
+            params.maxNodes = maxNodes;
+            query += ((experimentName || minNodes || (startDate && endDate)) ? ' AND' : ' WHERE') +
+            ` COUNT {MATCH (m2:Node) WHERE toLower(n.experimentId) CONTAINS toLower(m2.experimentId)} <= ${params.maxNodes}`;
+            countQuery += ((experimentName || minNodes || (startDate && endDate)) ? ' AND' : ' WHERE') +
+            ` COUNT {MATCH (m2:Node) WHERE toLower(n.experimentId) CONTAINS toLower(m2.experimentId)} <= ${params.maxNodes}`;
+        }
+        
 
         if (experimentId) {
-            query += (experimentName || (startDate && endDate) ? ' AND' : ' WHERE') +
+            query += (experimentName || (startDate && endDate) || minNodes || maxNodes ? ' AND' : ' WHERE') +
                 ` toLower(n.experimentId) CONTAINS toLower("${experimentId}")`;
-            countQuery += (experimentName || (startDate && endDate) ? ' AND' : ' WHERE') +
+            countQuery += (experimentName || (startDate && endDate) || (minNodes && maxNodes) ? ' AND' : ' WHERE') +
                 ` toLower(n.experimentId) CONTAINS toLower("${experimentId}")`;
             params.experimentId = experimentId;
         }

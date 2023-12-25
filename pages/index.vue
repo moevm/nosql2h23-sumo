@@ -56,6 +56,12 @@
         <a-form-item label="Диапазон дат">
           <a-range-picker v-model:value="filterDateRange" />
         </a-form-item>
+        <a-form-item label="Минимальное число вершин">
+          <a-input v-model:value="minNodes" />
+        </a-form-item>
+        <a-form-item label="Максимальное число вершин">
+          <a-input v-model:value="maxNodes" />
+        </a-form-item>
       </a-form>
     </a-modal>
     <a-modal v-model:open="modalVisible" title="Импорт эксперимента" @ok="submitForm">
@@ -83,6 +89,8 @@ export default {
       filterModalVisible: false,
       filterExperimentId: '',
       filterDateRange: ['', ''],
+      minNodes: '',
+      maxNodes: '',
       filterText: '',
       experiments: [],
       pagination: {
@@ -150,12 +158,16 @@ export default {
       const url2 = 'http://localhost:3000/api/experiment-nodes-and-edges';
       const params = {
         page: this.pagination.current,
-        size: this.pagination.pageSize,
+        pageSize: this.pagination.pageSize,
         experimentName: this.filterText,
         experimentId: this.filterExperimentId,
         startDate: this.filterDateRange[0],
         endDate: this.filterDateRange[1],
+        minNodes: this.minNodes,
+        maxNodes: this.maxNodes,
       };
+      console.log(params);
+      
       console.log(this.filterText)
       console.log(JSON.stringify(this.pagination))
 
@@ -168,7 +180,6 @@ export default {
               }
               const response2 = await axios.get(url2, { params: queryParams });
               const data = response2.data;
-              console.log(data);
               
               experiment.nodes = data.nodeListSimple.length < 35 ? data.nodeListSimple : data.nodeListSimple.slice(0, 34) + "...";
               experiment.edges = data.edgeListSimple.length < 35 ? data.edgeListSimple : data.edgeListSimple.slice(0, 34) + "...";
