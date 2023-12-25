@@ -89,7 +89,8 @@ export async function retrieveExperiments(page: number, pageSize: number,
                                           experimentName?: string,
                                           experimentId?: string,
                                           startDate?: string, endDate?: string, 
-                                          minNodes?: string, maxNodes?: string) {
+                                          minNodes?: string, maxNodes?: string,
+                                          minEdges?: string, maxEdges?: string) {
     const session = driver.session();
     
     try {
@@ -134,11 +135,28 @@ export async function retrieveExperiments(page: number, pageSize: number,
             ` COUNT {MATCH (m2:Node) WHERE toLower(n.experimentId) CONTAINS toLower(m2.experimentId)} <= ${params.maxNodes}`;
         }
         
+        if (minEdges) {
+            params.minEdges = minEdges;
+            query += (experimentName || (startDate && endDate) || minNodes || maxNodes ? ' AND' : ' WHERE') +
+            ` COUNT {MATCH (n3:Node {experimentId: n.experimentId})-[r]->(m3:Node {experimentId: n.experimentId})} >= ${params.minEdges}`;
+            countQuery += (experimentName || (startDate && endDate) || minNodes || maxNodes ? ' AND' : ' WHERE') +
+            ` COUNT {MATCH (n3:Node {experimentId: n.experimentId})-[r]->(m3:Node {experimentId: n.experimentId})} >= ${params.minEdges}`;
+        }
+        
+        
+        if (maxEdges) {
+            params.maxEdges = maxEdges;
+            query += (experimentName || (startDate && endDate) || minNodes || maxNodes || minEdges ? ' AND' : ' WHERE') +
+            ` COUNT {MATCH (n4:Node {experimentId: n.experimentId})-[r]->(m4:Node {experimentId: n.experimentId})} <= ${params.maxEdges}`;
+            countQuery += (experimentName || (startDate && endDate) || minNodes || maxNodes || minEdges ? ' AND' : ' WHERE') +
+            ` COUNT {MATCH (n4:Node {experimentId: n.experimentId})-[r]->(m4:Node {experimentId: n.experimentId})} <= ${params.maxEdges}`;
+        }
+
 
         if (experimentId) {
-            query += (experimentName || (startDate && endDate) || minNodes || maxNodes ? ' AND' : ' WHERE') +
+            query += (experimentName || (startDate && endDate) || minNodes || maxNodes || minEdges || maxEdges ? ' AND' : ' WHERE') +
                 ` toLower(n.experimentId) CONTAINS toLower("${experimentId}")`;
-            countQuery += (experimentName || (startDate && endDate) || (minNodes && maxNodes) ? ' AND' : ' WHERE') +
+            countQuery += (experimentName || (startDate && endDate) || minNodes || maxNodes || minEdges || maxEdges ? ' AND' : ' WHERE') +
                 ` toLower(n.experimentId) CONTAINS toLower("${experimentId}")`;
             params.experimentId = experimentId;
         }

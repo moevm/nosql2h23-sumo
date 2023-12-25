@@ -62,6 +62,12 @@
         <a-form-item label="Максимальное число вершин">
           <a-input v-model:value="maxNodes" />
         </a-form-item>
+        <a-form-item label="Минимальное число рёбер">
+          <a-input v-model:value="minEdges" />
+        </a-form-item>
+        <a-form-item label="Максимальное число рёбер">
+          <a-input v-model:value="maxEdges" />
+        </a-form-item>
       </a-form>
     </a-modal>
     <a-modal v-model:open="modalVisible" title="Импорт эксперимента" @ok="submitForm">
@@ -91,6 +97,8 @@ export default {
       filterDateRange: ['', ''],
       minNodes: '',
       maxNodes: '',
+      minEdges: '',
+      maxEdges: '',
       filterText: '',
       experiments: [],
       pagination: {
@@ -165,6 +173,8 @@ export default {
         endDate: this.filterDateRange[1],
         minNodes: this.minNodes,
         maxNodes: this.maxNodes,
+        minEdges: this.minEdges,
+        maxEdges: this.maxEdges,
       };
       console.log(params);
       
