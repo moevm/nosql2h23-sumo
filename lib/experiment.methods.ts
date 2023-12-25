@@ -160,14 +160,15 @@ export async function retrieveExperiments(page: number, pageSize: number,
 export async function retrieveExperimentNodesAndEdges(experimentId: string) {
     const session = driver.session();
     try {
-        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN n.id as id, n.x as x, n.y as y'
-        const edgeListQuery = 'MATCH (n:Node {experimentId: $experimentId})-[r]->(m:Node {experimentId: $experimentId}) RETURN r.id as id, n.id as fromId, m.id as toId'
+        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN n, n.id as id, n.x as x, n.y as y'
+        const edgeListQuery = 'MATCH (n:Node {experimentId: $experimentId})-[r]->(m:Node {experimentId: $experimentId}) RETURN r, r.id as id, n.id as fromId, m.id as toId'
 
         const nodeListResult = await session.run(nodeListQuery, { experimentId: experimentId });
         const edgeListResult = await session.run(edgeListQuery, { experimentId: experimentId });
 
-        const nodeList = nodeListResult.records.map(node => `${node.get('id').low}(${node.get('x').low}:${node.get('y').low})`);
-        const edgeList = edgeListResult.records.map(edge => [edge.get('fromId').low, edge.get('id').low, edge.get('toId').low].join("->"));
+
+        const nodeList = nodeListResult.records.map(node => `${node.get('id')}(${node.get('x')}:${node.get('y')})`);
+        const edgeList = edgeListResult.records.map(edge => `${edge.get('fromId')}(${edge.get('id')}:${edge.get('toId')})`);
         
         const nodeListAsString = nodeList.join("; ");
         const edgeListAsString = edgeList.join("; ");
@@ -208,29 +209,6 @@ export async function retrieveExperimentStats(experimentId: string) {
 
         const degreeSum = degreeDist.reduce((a, b) => a + b, 0);
         const avgNodeDegree = degreeSum / nodeCount;
-        
-        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN n, n.id as id, n.x as x, n.y as y'
-        const edgeListQuery = 'MATCH (n:Node {experimentId: $experimentId})-[r]->(m:Node {experimentId: $experimentId}) RETURN r, r.id as id, n.id as fromId, m.id as toId'
-
-        const nodeListResult = await session.run(nodeListQuery, { experimentId: experimentId });
-        const edgeListResult = await session.run(edgeListQuery, { experimentId: experimentId });
-
-        nodeListResult.records.forEach(element => {
-            console.log(element);
-            
-        });
-        console.log(123);
-        (123);
-        edgeListResult.records.forEach(element => {
-            console.log(element);
-            
-        });
-
-        const nodeList = nodeListResult.records.map(node => `${node.get('id')}(${node.get('x')}:${node.get('y')})`);
-        const edgeList = edgeListResult.records.map(edge => `${edge.get('fromId')}(${edge.get('id')}:${edge.get('toId')})`);
-        
-        const nodeListAsString = nodeList.join("; ");
-        const edgeListAsString = edgeList.join("; ");
 
         return {
             numberOfNodes: nodeCount,
@@ -239,8 +217,6 @@ export async function retrieveExperimentStats(experimentId: string) {
             minNodeDegree: minNodeDegree,
             maxNodeDegree: maxNodeDegree,
             medianNodeDegree: medianNodeDegree,
-            nodeListAsString: nodeListAsString,
-            edgeListAsString: edgeListAsString
         };
     } catch (error) {
         console.error('Error retrieving experiment stats from Neo4j:', error);
