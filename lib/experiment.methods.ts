@@ -160,17 +160,17 @@ export async function retrieveExperiments(page: number, pageSize: number,
 export async function retrieveExperimentNodesAndEdges(experimentId: string) {
     const session = driver.session();
     try {
-        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN ID(n) as id'
-        const edgeListQuery = 'MATCH (:Node {experimentId: $experimentId})-[r]->(:Node {experimentId: $experimentId}) RETURN ID(r) as id'
+        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN n.id as id, n.x as x, n.y as y'
+        const edgeListQuery = 'MATCH (n:Node {experimentId: $experimentId})-[r]->(m:Node {experimentId: $experimentId}) RETURN r.id as id, n.id as fromId, m.id as toId'
 
         const nodeListResult = await session.run(nodeListQuery, { experimentId: experimentId });
         const edgeListResult = await session.run(edgeListQuery, { experimentId: experimentId });
 
-        const nodeList = nodeListResult.records.map(node => node.get('id').low);
-        const edgeList = edgeListResult.records.map(edge => edge.get('id').low);
+        const nodeList = nodeListResult.records.map(node => `${node.get('id').low}(${node.get('x').low}:${node.get('y').low})`);
+        const edgeList = edgeListResult.records.map(edge => [edge.get('fromId').low, edge.get('id').low, edge.get('toId').low].join("->"));
         
-        const nodeListAsString = nodeList.join(" ");
-        const edgeListAsString = edgeList.join(" ");
+        const nodeListAsString = nodeList.join("; ");
+        const edgeListAsString = edgeList.join("; ");
 
         return {
             nodeListAsString: nodeListAsString,
@@ -204,12 +204,33 @@ export async function retrieveExperimentStats(experimentId: string) {
         const minNodeDegree = degreeDist.length > 0? Math.min(...degreeDist): 0 ;
         const maxNodeDegree = degreeDist.length > 0? Math.max(...degreeDist): 0 ;
         const medianNodeDegree = degreeDist.length > 0? degreeDist[Math.floor(degreeDist.length / 2)]: 0 ;
-        const nodeListAsString = nodeList.join(" ");
-        const edgeListAsString = edgeList.join(" ");
         
 
         const degreeSum = degreeDist.reduce((a, b) => a + b, 0);
         const avgNodeDegree = degreeSum / nodeCount;
+        
+        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN n, n.id as id, n.x as x, n.y as y'
+        const edgeListQuery = 'MATCH (n:Node {experimentId: $experimentId})-[r]->(m:Node {experimentId: $experimentId}) RETURN r, r.id as id, n.id as fromId, m.id as toId'
+
+        const nodeListResult = await session.run(nodeListQuery, { experimentId: experimentId });
+        const edgeListResult = await session.run(edgeListQuery, { experimentId: experimentId });
+
+        nodeListResult.records.forEach(element => {
+            console.log(element);
+            
+        });
+        console.log(123);
+        (123);
+        edgeListResult.records.forEach(element => {
+            console.log(element);
+            
+        });
+
+        const nodeList = nodeListResult.records.map(node => `${node.get('id')}(${node.get('x')}:${node.get('y')})`);
+        const edgeList = edgeListResult.records.map(edge => `${edge.get('fromId')}(${edge.get('id')}:${edge.get('toId')})`);
+        
+        const nodeListAsString = nodeList.join("; ");
+        const edgeListAsString = edgeList.join("; ");
 
         return {
             numberOfNodes: nodeCount,
