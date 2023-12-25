@@ -1,5 +1,6 @@
 import xml2js from "xml2js";
 import { neo4jDriver } from './neo4j';
+import { SoundTwoTone } from "#build/components";
 function generateRandomId() {
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let id = '';
@@ -132,6 +133,7 @@ export async function retrieveExperiments(page: number, pageSize: number,
             skip: (page - 1) * pageSize,
             limit: pageSize
         });
+        
 
         const experiments = result.records.map(record => {
             return {
@@ -140,6 +142,7 @@ export async function retrieveExperiments(page: number, pageSize: number,
                 date: record.get('date')
             };
         });
+        
 
         const totalCountResult = await session.run(countQuery, params);
         const totalExperiments = totalCountResult.records[0].get('totalCount').low;
@@ -154,6 +157,33 @@ export async function retrieveExperiments(page: number, pageSize: number,
     }
 }
 
+export async function retrieveExperimentNodesAndEdges(experimentId: string) {
+    const session = driver.session();
+    try {
+        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN ID(n) as id'
+        const edgeListQuery = 'MATCH (:Node {experimentId: $experimentId})-[r]->(:Node {experimentId: $experimentId}) RETURN ID(r) as id'
+
+        const nodeListResult = await session.run(nodeListQuery, { experimentId: experimentId });
+        const edgeListResult = await session.run(edgeListQuery, { experimentId: experimentId });
+
+        const nodeList = nodeListResult.records.map(node => node.get('id').low);
+        const edgeList = edgeListResult.records.map(edge => edge.get('id').low);
+        
+        const nodeListAsString = nodeList.join(" ");
+        const edgeListAsString = edgeList.join(" ");
+
+        return {
+            nodeListAsString: nodeListAsString,
+            edgeListAsString: edgeListAsString
+        };
+    } catch (error) {
+        console.error('Error retrieving experiment nodes and edges from Neo4j:', error);
+        return {};
+    } finally {
+        await session.close();
+    }
+}
+     
 
 export async function retrieveExperimentStats(experimentId: string) {
     const session = driver.session();
@@ -162,18 +192,21 @@ export async function retrieveExperimentStats(experimentId: string) {
         const nodesQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN COUNT(n) as nodeCount';
         const edgesQuery = 'MATCH (:Node {experimentId: $experimentId})-[r]->(:Node {experimentId: $experimentId}) RETURN COUNT(r) as edgeCount';
         const degreeDistQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN COUNT{(n)--()} as degree ORDER BY degree';
-
+        
         const nodesResult = await session.run(nodesQuery, { experimentId: experimentId });
         const edgesResult = await session.run(edgesQuery, { experimentId: experimentId });
         const degreeDistResult = await session.run(degreeDistQuery, { experimentId: experimentId });
-
+        
         const nodeCount = nodesResult.records[0].get('nodeCount').low;
         const edgeCount = edgesResult.records[0].get('edgeCount').low;
-
+        
         const degreeDist = degreeDistResult.records.map(record => record.get('degree').low);
         const minNodeDegree = degreeDist.length > 0? Math.min(...degreeDist): 0 ;
         const maxNodeDegree = degreeDist.length > 0? Math.max(...degreeDist): 0 ;
         const medianNodeDegree = degreeDist.length > 0? degreeDist[Math.floor(degreeDist.length / 2)]: 0 ;
+        const nodeListAsString = nodeList.join(" ");
+        const edgeListAsString = edgeList.join(" ");
+        
 
         const degreeSum = degreeDist.reduce((a, b) => a + b, 0);
         const avgNodeDegree = degreeSum / nodeCount;
@@ -185,6 +218,8 @@ export async function retrieveExperimentStats(experimentId: string) {
             minNodeDegree: minNodeDegree,
             maxNodeDegree: maxNodeDegree,
             medianNodeDegree: medianNodeDegree,
+            nodeListAsString: nodeListAsString,
+            edgeListAsString: edgeListAsString
         };
     } catch (error) {
         console.error('Error retrieving experiment stats from Neo4j:', error);
