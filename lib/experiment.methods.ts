@@ -133,20 +133,21 @@ export async function retrieveExperiments(page: number, pageSize: number,
             skip: (page - 1) * pageSize,
             limit: pageSize
         });
-        
+
 
         const experiments = result.records.map(record => {
             return {
                 experimentName: record.get('experimentName'),
                 id: record.get('id'),
-                date: record.get('date')
+                date: record.get('date'),
             };
         });
+
         
 
         const totalCountResult = await session.run(countQuery, params);
         const totalExperiments = totalCountResult.records[0].get('totalCount').low;
-
+        
         return { experiments, totalExperiments };
 
     } catch (error) {
@@ -160,8 +161,8 @@ export async function retrieveExperiments(page: number, pageSize: number,
 export async function retrieveExperimentNodesAndEdges(experimentId: string) {
     const session = driver.session();
     try {
-        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN n, n.id as id, n.x as x, n.y as y'
-        const edgeListQuery = 'MATCH (n:Node {experimentId: $experimentId})-[r]->(m:Node {experimentId: $experimentId}) RETURN r, r.id as id, n.id as fromId, m.id as toId'
+        const nodeListQuery = 'MATCH (n:Node {experimentId: $experimentId}) RETURN n.id as id, n.x as x, n.y as y'
+        const edgeListQuery = 'MATCH (n:Node {experimentId: $experimentId})-[r]->(m:Node {experimentId: $experimentId}) RETURN r.id as id, n.id as fromId, m.id as toId'
 
         const nodeListResult = await session.run(nodeListQuery, { experimentId: experimentId });
         const edgeListResult = await session.run(edgeListQuery, { experimentId: experimentId });
@@ -173,9 +174,14 @@ export async function retrieveExperimentNodesAndEdges(experimentId: string) {
         const nodeListAsString = nodeList.join("; ");
         const edgeListAsString = edgeList.join("; ");
 
+        const nodeListSimple = nodeListResult.records.map(node => node.get('id')).join("; ");
+        const edgeListSimple = edgeListResult.records.map(edge => edge.get('id')).join("; ");
+
         return {
             nodeListAsString: nodeListAsString,
-            edgeListAsString: edgeListAsString
+            edgeListAsString: edgeListAsString,
+            nodeListSimple: nodeListSimple,
+            edgeListSimple: edgeListSimple,
         };
     } catch (error) {
         console.error('Error retrieving experiment nodes and edges from Neo4j:', error);

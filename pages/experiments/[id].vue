@@ -70,7 +70,6 @@ onMounted(async () => {
 
     const response2 = await axios.get(url2, { params: queryParams })
     const data = response2.data
-    console.log(data);
     
     nodesAndEdges.push({
       key: data,

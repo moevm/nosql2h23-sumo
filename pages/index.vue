@@ -104,6 +104,14 @@ export default {
           title: 'Дата создания',
           dataIndex: 'date',
         },
+        {
+          title: 'Вершины',
+          dataIndex: 'nodes',
+        },
+        {
+          title: 'Рёбра',
+          dataIndex: 'edges',
+        },
       ],
       modalVisible: false,
       experimentNameTextFieldValue: '',
@@ -137,8 +145,9 @@ export default {
       this.pagination = pagination;
       this.fetchExperiments();
     },
-    fetchExperiments() {
+    async fetchExperiments() {
       const url = 'http://localhost:3000/api/experiments';
+      const url2 = 'http://localhost:3000/api/experiment-nodes-and-edges';
       const params = {
         page: this.pagination.current,
         size: this.pagination.pageSize,
@@ -150,9 +159,21 @@ export default {
       console.log(this.filterText)
       console.log(JSON.stringify(this.pagination))
 
-      axios.get(url, { params })
-          .then(response => {
+      await axios.get(url, { params })
+          .then(async response => {
             this.experiments = response.data.experiments;
+            for (let experiment of this.experiments){
+              const queryParams = {
+                experimentId: experiment.id,
+              }
+              const response2 = await axios.get(url2, { params: queryParams });
+              const data = response2.data;
+              console.log(data);
+              
+              experiment.nodes = data.nodeListSimple.length < 35 ? data.nodeListSimple : data.nodeListSimple.slice(0, 34) + "...";
+              experiment.edges = data.edgeListSimple.length < 35 ? data.edgeListSimple : data.edgeListSimple.slice(0, 34) + "...";
+            }
+            this.experiments.forEach(e => console.log(e));
             this.pagination.total = response.data.totalExperiments;
           })
           .catch(error => {
