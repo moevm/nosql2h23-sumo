@@ -8,7 +8,8 @@
         <a-button type="primary" @click="goBack">Назад</a-button>
       </template>
     </a-page-header>
-    <a-table :dataSource="statistics" :columns="columns" />
+    <a-table :dataSource="nodesAndEdges" :columns="nodesAndEdgesColumns" :pagination="false" />
+    <a-table :dataSource="statistics" :columns="statisticsColumns" />
   </div>
 </template>
 
@@ -20,7 +21,22 @@ import axios from 'axios'
 const route = useRoute()
 const router = useRouter()
 
-const columns = [
+const nodesAndEdgesColumns = [
+  {
+    title: 'Вершины',
+    dataIndex: 'nodes',
+    key: 'nodes'
+  },
+  {
+    title: 'Рёбра',
+    dataIndex: 'edges',
+    key: 'edges'
+  }
+]
+
+const nodesAndEdges = reactive([])
+
+const statisticsColumns = [
   {
     title: 'Название статистики',
     dataIndex: 'name',
@@ -37,6 +53,7 @@ const statistics = reactive([])
 
 onMounted(async () => {
   const url = 'http://localhost:3000/api/experiment-stats'
+  const url2 = 'http://localhost:3000/api/experiment-nodes-and-edges'
   const queryParams = {
     experimentId: route.params.id
   }
@@ -50,6 +67,16 @@ onMounted(async () => {
         value: stats[stat]
       })
     }
+
+    const response2 = await axios.get(url2, { params: queryParams })
+    const data = response2.data
+    console.log(data);
+    
+    nodesAndEdges.push({
+      key: data,
+      nodes: data.nodeListAsString,
+      edges: data.edgeListAsString
+    })
   } catch (err) {
     console.error(err)
   }
